@@ -5,28 +5,33 @@ export default class UserAchivements extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.integer('id_user').notNullable()
-      table.integer('id_achivement').notNullable()
+      table.increments('id')
+      table
+        .integer('user_id')
+        .unsigned()
+        .references('users.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      table
+        .integer('achivement_id')
+        .unsigned()
+        .unique()
+        .references('achivements.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
-
-      table.foreign('id_user').references('users.id').onDelete('CASCADE').onUpdate('CASCADE')
-      table
-        .foreign('id_achivement')
-        .references('achivements.id')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
     })
   }
 
   public async down() {
     this.schema.alterTable(this.tableName, (table) => {
-      table.dropForeign('id_user')
-      table.dropForeign('id_achivement')
+      table.dropForeign('user_id')
+      table.dropForeign('achivement_id')
     })
     this.schema.dropTable(this.tableName)
   }

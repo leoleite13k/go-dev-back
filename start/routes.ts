@@ -24,4 +24,8 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
+Route.post('/signUp', 'AuthController.signUp')
 Route.post('/signIn', 'AuthController.signIn')
+Route.group(() => {
+  Route.resource('profiles', 'ProfileController').apiOnly()
+}).middleware('auth')
