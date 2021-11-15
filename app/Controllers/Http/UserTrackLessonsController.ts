@@ -1,7 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Lesson from 'App/Models/Lesson'
 import Profile from 'App/Models/Profile'
-import Track from 'App/Models/Track'
 import UserTrackLesson from 'App/Models/UserTrackLesson'
 
 export default class UserTrackLessonsController {
