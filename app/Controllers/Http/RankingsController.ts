@@ -7,7 +7,7 @@ export default class RankingsController {
     const limit = 20
 
     try {
-      const profiles = await Profile.query().orderBy('points').paginate(page, limit)
+      const profiles = await Profile.query().orderBy('points', 'desc').paginate(page, limit)
 
       return profiles
     } catch {

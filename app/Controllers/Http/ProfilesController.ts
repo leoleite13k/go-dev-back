@@ -7,7 +7,7 @@ export default class ProfilesController {
 
     try {
       const profile = await Profile.create({ userId: auth.user?.id, fullName, avatarUrl })
-      return { ...profile, points: 0 }
+      return { ...profile.serialize(), points: 0 }
     } catch {
       return response.badRequest('There is already an profile created for this account')
     }

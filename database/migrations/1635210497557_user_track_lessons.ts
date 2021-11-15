@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class UserLessons extends BaseSchema {
-  protected tableName = 'user_lessons'
+export default class UserTrackLessons extends BaseSchema {
+  protected tableName = 'user_track_lessons'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
@@ -10,6 +10,12 @@ export default class UserLessons extends BaseSchema {
         .integer('user_id')
         .notNullable()
         .references('users.id')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      table
+        .integer('track_id')
+        .notNullable()
+        .references('tracks.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
@@ -32,6 +38,7 @@ export default class UserLessons extends BaseSchema {
   public async down() {
     this.schema.alterTable(this.tableName, (table) => {
       table.dropForeign('user_id')
+      table.dropForeign('track_id')
       table.dropForeign('lesson_id')
     })
     this.schema.dropTable(this.tableName)

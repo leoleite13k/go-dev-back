@@ -5,7 +5,7 @@ export default class Profile extends BaseModel {
   @column({ isPrimary: true, serializeAs: null })
   public id: number
 
-  @column({ serializeAs: null })
+  @column()
   public userId: number
 
   @column()

@@ -12,7 +12,7 @@ import {
 
 import Profile from './Profile'
 import UserAchivement from './UserAchivement'
-import UserLesson from './UserLesson'
+import UserTrackLesson from './UserTrackLesson'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -39,8 +39,8 @@ export default class User extends BaseModel {
   @hasMany(() => UserAchivement)
   public achivements: HasMany<typeof UserAchivement>
 
-  @hasMany(() => UserLesson)
-  public lessons: HasMany<typeof UserLesson>
+  @hasMany(() => UserTrackLesson)
+  public lessons: HasMany<typeof UserTrackLesson>
 
   @beforeSave()
   public static async hashPassword(user: User) {

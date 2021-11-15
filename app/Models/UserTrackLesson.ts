@@ -1,12 +1,15 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
-export default class UserLesson extends BaseModel {
-  @column({ isPrimary: true })
+export default class UserTrackLesson extends BaseModel {
+  @column({ isPrimary: true, serializeAs: null })
   public id: number
 
-  @column()
+  @column({ serializeAs: null })
   public userId: number
+
+  @column()
+  public trackId: number
 
   @column()
   public lessonId: number

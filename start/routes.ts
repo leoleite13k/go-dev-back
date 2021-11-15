@@ -32,6 +32,7 @@ Route.group(() => {
   Route.resource('userAchivements', 'UserAchivementsController').apiOnly()
   Route.resource('tracks', 'TracksController').apiOnly()
   Route.resource('lessons', 'LessonsController').apiOnly()
-  Route.resource('userLessons', 'UserLessonsController').apiOnly()
+  Route.resource('userTrackLessons', 'UserTrackLessonsController').apiOnly()
   Route.get('/ranking', 'RankingsController.index')
+  Route.get('/journey', 'JourneysController.index')
 }).middleware('auth')
