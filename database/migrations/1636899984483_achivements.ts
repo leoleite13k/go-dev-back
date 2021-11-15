@@ -7,7 +7,7 @@ export default class Achivements extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('title').notNullable()
-      table.string('photo').notNullable()
+      table.string('photo_url').notNullable()
       table.string('description').notNullable()
 
       /**

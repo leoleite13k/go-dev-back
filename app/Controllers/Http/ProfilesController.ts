@@ -1,8 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Profile from 'App/Models/Profile'
-import User from 'App/Models/User'
 
-export default class ProfileController {
+export default class ProfilesController {
   public async store({ auth, request, response }: HttpContextContract) {
     const { fullName, avatarUrl } = request.only(['fullName', 'avatarUrl'])
 

@@ -8,7 +8,7 @@ export default class AuthController {
 
     try {
       const user = await User.create({ email, password })
-      return { user }
+      return user
     } catch {
       return response.badRequest('There is already an account created with this email')
     }

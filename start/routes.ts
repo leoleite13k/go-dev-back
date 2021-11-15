@@ -27,5 +27,8 @@ Route.get('/', async () => {
 Route.post('/signUp', 'AuthController.signUp')
 Route.post('/signIn', 'AuthController.signIn')
 Route.group(() => {
-  Route.resource('profiles', 'ProfileController').apiOnly()
+  Route.resource('profiles', 'ProfilesController').apiOnly()
+}).middleware('auth')
+Route.group(() => {
+  Route.resource('achivements', 'AchivementsController').apiOnly()
 }).middleware('auth')
