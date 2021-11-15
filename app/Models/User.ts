@@ -1,8 +1,18 @@
 import Hash from '@ioc:Adonis/Core/Hash'
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasOne, HasOne, beforeSave } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  hasOne,
+  HasOne,
+  hasMany,
+  HasMany,
+  beforeSave,
+} from '@ioc:Adonis/Lucid/Orm'
 
 import Profile from './Profile'
+import UserAchivement from './UserAchivement'
+import UserLesson from './UserLesson'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -25,6 +35,12 @@ export default class User extends BaseModel {
 
   @hasOne(() => Profile)
   public profile: HasOne<typeof Profile>
+
+  @hasMany(() => UserAchivement)
+  public achivements: HasMany<typeof UserAchivement>
+
+  @hasMany(() => UserLesson)
+  public lessons: HasMany<typeof UserLesson>
 
   @beforeSave()
   public static async hashPassword(user: User) {

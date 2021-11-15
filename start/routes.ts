@@ -30,4 +30,7 @@ Route.group(() => {
   Route.resource('profiles', 'ProfilesController').apiOnly()
   Route.resource('achivements', 'AchivementsController').apiOnly()
   Route.resource('userAchivements', 'UserAchivementsController').apiOnly()
+  Route.resource('tracks', 'TracksController').apiOnly()
+  Route.resource('lessons', 'LessonsController').apiOnly()
+  Route.resource('userLessons', 'UserLessonsController').apiOnly()
 }).middleware('auth')

@@ -12,7 +12,7 @@ export default class UserLesson extends BaseModel {
   public lessonId: number
 
   @column()
-  public complete: boolean
+  public completed: boolean
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
