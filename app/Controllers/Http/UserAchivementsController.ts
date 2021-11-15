@@ -24,7 +24,7 @@ export default class UserAchivementsController {
 
       return achivements
     } catch {
-      return response.badRequest('There is error to to find the achivements for this user')
+      return response.badRequest('There is error to find the achivements for this user')
     }
   }
 }

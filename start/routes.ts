@@ -33,4 +33,5 @@ Route.group(() => {
   Route.resource('tracks', 'TracksController').apiOnly()
   Route.resource('lessons', 'LessonsController').apiOnly()
   Route.resource('userLessons', 'UserLessonsController').apiOnly()
+  Route.get('/ranking', 'RankingsController.index')
 }).middleware('auth')
