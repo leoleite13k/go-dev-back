@@ -12,7 +12,7 @@ type TJourney = {
 }
 
 export default class JourneysController {
-  public async index({ auth, request, response }: HttpContextContract) {
+  public async index({ auth, response }: HttpContextContract) {
     try {
       const journey: TJourney[] = []
 
