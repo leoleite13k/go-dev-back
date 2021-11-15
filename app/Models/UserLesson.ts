@@ -6,10 +6,10 @@ export default class UserLesson extends BaseModel {
   public id: number
 
   @column()
-  public idUser: number
+  public userId: number
 
   @column()
-  public idLesson: number
+  public lessonId: number
 
   @column()
   public complete: boolean

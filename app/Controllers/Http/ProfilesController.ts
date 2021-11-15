@@ -7,7 +7,7 @@ export default class ProfilesController {
 
     try {
       const profile = await Profile.create({ userId: auth.user?.id, fullName, avatarUrl })
-      return profile
+      return { ...profile, points: 0 }
     } catch {
       return response.badRequest('There is already an profile created for this account')
     }
@@ -27,7 +27,6 @@ export default class ProfilesController {
 
     try {
       const profile = await Profile.findByOrFail('user_id', params.id)
-
       await profile.merge({ fullName, avatarUrl }).save()
 
       return profile

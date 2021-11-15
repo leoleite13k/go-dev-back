@@ -6,7 +6,7 @@ export default class Lesson extends BaseModel {
   public id: number
 
   @column()
-  public idTrack: number
+  public trackId: number
 
   @column()
   public title: string

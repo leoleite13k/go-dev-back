@@ -6,10 +6,10 @@ export default class UserAchivement extends BaseModel {
   public id: number
 
   @column()
-  public idUser: number
+  public userId: number
 
   @column()
-  public idAchivement: number
+  public achivementId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

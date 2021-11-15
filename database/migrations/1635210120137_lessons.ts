@@ -8,7 +8,7 @@ export default class Lessons extends BaseSchema {
       table.increments('id')
       table
         .integer('track_id')
-        .unsigned()
+        .notNullable()
         .references('tracks.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')

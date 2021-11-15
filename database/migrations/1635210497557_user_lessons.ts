@@ -8,13 +8,13 @@ export default class UserLessons extends BaseSchema {
       table.increments('id')
       table
         .integer('user_id')
-        .unsigned()
+        .notNullable()
         .references('users.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
         .integer('lesson_id')
-        .unsigned()
+        .notNullable()
         .unique()
         .references('lessons.id')
         .onUpdate('CASCADE')

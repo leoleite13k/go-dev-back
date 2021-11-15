@@ -8,13 +8,13 @@ export default class UserAchivements extends BaseSchema {
       table.increments('id')
       table
         .integer('user_id')
-        .unsigned()
+        .notNullable()
         .references('users.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
         .integer('achivement_id')
-        .unsigned()
+        .notNullable()
         .unique()
         .references('achivements.id')
         .onUpdate('CASCADE')

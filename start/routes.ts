@@ -28,7 +28,6 @@ Route.post('/signUp', 'AuthController.signUp')
 Route.post('/signIn', 'AuthController.signIn')
 Route.group(() => {
   Route.resource('profiles', 'ProfilesController').apiOnly()
-}).middleware('auth')
-Route.group(() => {
   Route.resource('achivements', 'AchivementsController').apiOnly()
+  Route.resource('userAchivements', 'UserAchivementsController').apiOnly()
 }).middleware('auth')

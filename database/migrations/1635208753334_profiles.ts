@@ -8,7 +8,7 @@ export default class Profiles extends BaseSchema {
       table.increments('id')
       table
         .integer('user_id')
-        .unsigned()
+        .notNullable()
         .unique()
         .references('users.id')
         .onUpdate('CASCADE')
