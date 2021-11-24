@@ -3,11 +3,15 @@ import Profile from 'App/Models/Profile'
 
 export default class ProfilesController {
   public async store({ auth, request, response }: HttpContextContract) {
-    const { fullName, avatarUrl } = request.only(['fullName', 'avatarUrl'])
+    const { fullName, avatarOptions } = request.only(['fullName', 'avatarOptions'])
 
     try {
-      const profile = await Profile.create({ userId: auth.user?.id, fullName, avatarUrl })
-      return { ...profile.serialize(), points: 0 }
+      const profile = await Profile.create({
+        userId: auth.user?.id,
+        fullName,
+        avatarOptions: JSON.stringify(avatarOptions),
+      })
+      return { ...profile.serialize(), avatar_options: avatarOptions, points: 0 }
     } catch {
       return response.badRequest('There is already an profile created for this account')
     }
@@ -16,21 +20,21 @@ export default class ProfilesController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const profile = await Profile.findBy('user_id', params.id)
-      return profile
+      return { ...profile?.serialize(), avatar_options: JSON.parse(profile?.avatarOptions || '') }
     } catch {
       return response.badRequest('There is no profile created for this account')
     }
   }
 
   public async update({ params, request, response }: HttpContextContract) {
-    const { fullName, avatarUrl } = request.only(['fullName', 'avatarUrl'])
+    const { fullName, avatarOptions } = request.only(['fullName', 'avatarOptions'])
 
     try {
       const profile = await Profile.findByOrFail('user_id', params.id)
-      await profile.merge({ fullName, avatarUrl }).save()
+      await profile.merge({ fullName, avatarOptions: JSON.stringify(avatarOptions) }).save()
 
-      return profile
-    } catch (e) {
+      return { ...profile?.serialize(), avatar_options: JSON.parse(profile?.avatarOptions || '') }
+    } catch {
       return response.badRequest('There is no profile created for this account')
     }
   }

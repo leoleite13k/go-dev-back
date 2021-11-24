@@ -14,7 +14,7 @@ export default class Profile extends BaseModel {
   public fullName: string
 
   @column()
-  public avatarUrl: string
+  public avatarOptions: string
 
   @column()
   public points: number
