@@ -22,11 +22,21 @@ export default class AuthController {
       const profile = await Profile.findBy('user_id', user?.id)
       const token = await auth.use('api').attempt(email, password, { name: user?.email })
 
+      if (profile) {
+        return {
+          user: {
+            ...user?.serialize(),
+            profile: {
+              ...profile?.serialize(),
+              avatar_options: JSON.parse(profile?.serialize().avatar_options),
+            },
+          },
+          token,
+        }
+      }
+
       return {
-        user: {
-          ...user?.serialize(),
-          profile: profile?.serialize(),
-        },
+        user: { ...user?.serialize() },
         token,
       }
     } catch {

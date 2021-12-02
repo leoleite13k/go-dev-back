@@ -11,7 +11,13 @@ export default class ProfilesController {
         fullName,
         avatarOptions: JSON.stringify(avatarOptions),
       })
-      return { ...profile.serialize(), avatar_options: avatarOptions, points: 0 }
+      return {
+        ...profile.serialize(),
+        avatar_options: avatarOptions,
+        points: 0,
+        level: 0,
+        percent_level: 0,
+      }
     } catch {
       return response.badRequest('There is already an profile created for this account')
     }
