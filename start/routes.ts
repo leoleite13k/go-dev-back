@@ -37,6 +37,7 @@ Route.group(() => {
   Route.resource('userTrackLessons', 'UserTrackLessonsController').apiOnly()
   Route.get('/ranking', 'RankingsController.index')
   Route.get('/journey', 'JourneysController.index')
+  Route.get('/userTracks', 'UserTracksController.index')
 }).middleware('auth')
 Route.group(() => {
   Route.resource('achivements', 'AchivementsController').apiOnly().except(['index', 'show'])
