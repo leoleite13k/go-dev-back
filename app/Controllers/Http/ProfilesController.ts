@@ -13,10 +13,10 @@ export default class ProfilesController {
       })
       return {
         ...profile.serialize(),
-        avatar_options: avatarOptions,
+        avatarOptions: avatarOptions,
         points: 0,
         level: 0,
-        percent_level: 0,
+        percentLevel: 0,
       }
     } catch {
       return response.badRequest('There is already an profile created for this account')
@@ -26,7 +26,7 @@ export default class ProfilesController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const profile = await Profile.findBy('user_id', params.id)
-      return { ...profile?.serialize(), avatar_options: JSON.parse(profile?.avatarOptions || '') }
+      return { ...profile?.serialize(), avatarOptions: JSON.parse(profile?.avatarOptions || '') }
     } catch {
       return response.badRequest('There is no profile created for this account')
     }
@@ -39,7 +39,7 @@ export default class ProfilesController {
       const profile = await Profile.findByOrFail('user_id', params.id)
       await profile.merge({ fullName, avatarOptions: JSON.stringify(avatarOptions) }).save()
 
-      return { ...profile?.serialize(), avatar_options: JSON.parse(profile?.avatarOptions || '') }
+      return { ...profile?.serialize(), avatarOptions: JSON.parse(profile?.avatarOptions || '') }
     } catch {
       return response.badRequest('There is no profile created for this account')
     }

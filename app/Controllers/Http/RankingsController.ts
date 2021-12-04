@@ -13,7 +13,7 @@ export default class RankingsController {
         ...ranking.serialize(),
         data: ranking.serialize().data.map((profile) => ({
           ...profile,
-          avatar_options: JSON.parse(profile?.avatar_options || ''),
+          avatarOptions: JSON.parse(profile?.avatarOptions || ''),
         })),
       }
     } catch {

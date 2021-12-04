@@ -7,8 +7,8 @@ export default class UserAchivementsController {
     const { achivementId } = request.only(['achivementId'])
 
     try {
-      await UserAchivement.create({ userId: auth.user?.id, achivementId })
-      const achivement = await Achivement.find(achivementId)
+      await UserAchivement.firstOrCreate({ userId: auth.user?.id, achivementId })
+      const achivement = await Achivement.findOrFail(achivementId)
 
       return achivement
     } catch {

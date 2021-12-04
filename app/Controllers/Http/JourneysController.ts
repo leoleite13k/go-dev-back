@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 type TJourney = {
   title: string
   description: string
-  photo_url: string
+  photoUrl: string
   type: string
   date: DateTime
 }
@@ -20,7 +20,7 @@ export default class JourneysController {
       journey.push({
         title: 'Início da jornada',
         description: 'Esse foi seu primeiro passo para entrar na áre ade tecnologia',
-        photo_url: user?.profile.avatarUrl,
+        photoUrl: JSON.parse(user?.profile.avatarOptions || ''),
         type: 'created_account',
         date: user?.createdAt,
       })
@@ -29,7 +29,7 @@ export default class JourneysController {
         .select(
           'achivements.title',
           'achivements.description',
-          'achivements.photo_url',
+          'achivements.photo_url as photoUrl',
           'user_achivements.created_at as date'
         )
         .select(Database.raw(`'achivement' as type`))
@@ -40,7 +40,7 @@ export default class JourneysController {
       journey.push(...achivements)
 
       const sqlTracks = await Database.from('user_track_lessons')
-        .select('tracks.title', 'tracks.description', 'tracks.photo_url')
+        .select('tracks.title', 'tracks.description', 'tracks.photo_url as photoUrl')
         .select(
           Database.raw(`case when (
           select count(lessons.id)

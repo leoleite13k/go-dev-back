@@ -26,7 +26,7 @@ export default class Profile extends BaseModel {
   public updatedAt: DateTime
 
   @computed()
-  public get percent_level() {
+  public get percentLevel() {
     return this.points / POINTS_PER_LEVEL - Math.floor(this.points / POINTS_PER_LEVEL)
   }
 

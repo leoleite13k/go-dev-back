@@ -27,8 +27,8 @@ export default class AuthController {
           user: {
             ...user?.serialize(),
             profile: {
-              ...profile?.serialize(),
-              avatar_options: JSON.parse(profile?.serialize().avatar_options),
+              ...profile.serialize(),
+              avatarOptions: JSON.parse(profile.avatarOptions),
             },
           },
           token,
@@ -36,7 +36,7 @@ export default class AuthController {
       }
 
       return {
-        user: { ...user?.serialize() },
+        user,
         token,
       }
     } catch {
