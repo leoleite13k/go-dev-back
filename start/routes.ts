@@ -26,7 +26,9 @@ Route.get('/', async () => {
 
 Route.post('/signUp', 'AuthController.signUp')
 Route.post('/signIn', 'AuthController.signIn')
+Route.post('/forgot', 'AuthController.forgot')
 Route.group(() => {
+  Route.post('/updateAuth', 'AuthController.update')
   Route.resource('profiles', 'ProfilesController').apiOnly()
   Route.resource('userAchivements', 'UserAchivementsController').apiOnly()
   Route.resource('achivements', 'AchivementsController')

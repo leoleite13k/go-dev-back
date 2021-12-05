@@ -43,4 +43,44 @@ export default class AuthController {
       return response.badRequest('Invalid credentials')
     }
   }
+
+  public async forgot({ request, response }: HttpContextContract) {
+    const { email, password, confirmPassword } = request.only([
+      'email',
+      'password',
+      'confirmPassword',
+    ])
+
+    try {
+      if (password !== confirmPassword) {
+        return response.badRequest('The password is differente to confirm password')
+      }
+
+      const user = await User.findByOrFail('email', email)
+      await user.merge({ email, password }).save()
+      return user
+    } catch {
+      return response.badRequest('There was error to recover password for this user')
+    }
+  }
+
+  public async update({ auth, request, response }: HttpContextContract) {
+    const { email, password, confirmPassword } = request.only([
+      'email',
+      'password',
+      'confirmPassword',
+    ])
+
+    try {
+      if (password !== confirmPassword) {
+        return response.badRequest('The password is differente to confirm password')
+      }
+
+      const user = await User.findByOrFail('id', auth.user?.id)
+      await user.merge({ email, password }).save()
+      return user
+    } catch {
+      return response.badRequest('There was error to update the user')
+    }
+  }
 }
