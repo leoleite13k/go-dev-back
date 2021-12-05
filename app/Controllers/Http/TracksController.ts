@@ -16,7 +16,7 @@ export default class TracksController {
 
   public async index({ response }: HttpContextContract) {
     try {
-      const tracks = await Track.all()
+      const tracks = await Track.query().select('*').orderBy('id')
       return tracks
     } catch {
       return response.badRequest('There is no track created for this id')

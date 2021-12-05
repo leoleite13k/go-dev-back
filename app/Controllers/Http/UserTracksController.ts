@@ -21,7 +21,8 @@ export default class UserTracksController {
         GROUP BY utl.track_id
       ) as user_tracks
       INNER JOIN tracks t2 ON user_tracks.track_id = t2.id
-      GROUP BY t2.id`
+      GROUP BY t2.id
+      ORDER BY t2.id`
       const bindings = { userId: auth.user!.id }
       const { rows: userTracksRows } = await Database.rawQuery(sql, bindings)
 
