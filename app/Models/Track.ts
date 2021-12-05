@@ -22,5 +22,5 @@ export default class Track extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Lesson)
-  public lesson: HasMany<typeof Lesson>
+  public lessons: HasMany<typeof Lesson>
 }

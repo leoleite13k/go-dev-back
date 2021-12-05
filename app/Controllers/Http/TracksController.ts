@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Track from 'App/Models/Track'
+import UserTrackLesson from 'App/Models/UserTrackLesson'
 
 export default class TracksController {
   public async store({ request, response }: HttpContextContract) {
@@ -22,9 +23,26 @@ export default class TracksController {
     }
   }
 
-  public async show({ params, response }: HttpContextContract) {
+  public async show({ auth, params, response }: HttpContextContract) {
     try {
-      const track = await Track.query().preload('lesson').where('id', params.id)
+      const trackLessons = await Track.query()
+        .preload('lessons')
+        .where('id', params.id)
+        .firstOrFail()
+      const userTrackLessons = await UserTrackLesson.query()
+        .where('userId', auth.user!.id)
+        .andWhere('trackId', params.id)
+
+      const track = {
+        ...trackLessons.serialize(),
+        lessons: trackLessons
+          .serialize()
+          .lessons.map((lesson) => ({
+            ...lesson,
+            completed: !!userTrackLessons.find((utl) => utl.lessonId === lesson.id)?.completed,
+          }))
+          .sort((a, b) => a.id - b.id),
+      }
 
       return track
     } catch {
