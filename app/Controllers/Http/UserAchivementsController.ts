@@ -22,7 +22,7 @@ export default class UserAchivementsController {
       const achivementsIds = userAchivements.map((userAchivement) => userAchivement.achivementId)
       const achivements = await Achivement.findMany(achivementsIds)
 
-      return achivements
+      return achivements.sort((a, b) => a.id - b.id)
     } catch {
       return response.badRequest('There is error to find the achivements for this user')
     }

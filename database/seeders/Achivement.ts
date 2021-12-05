@@ -13,7 +13,7 @@ export default class AchivementSeeder extends BaseSeeder {
       {
         title: 'Primeira trilha',
         photoUrl:
-          'https://w7.pngwing.com/pngs/879/785/png-transparent-ribbon-award-pretty-gold-medal-medal-electric-blue-prize.png',
+          'https://images.vexels.com/media/users/3/129154/isolated/preview/a9b2c4b91e649bf6c2b7de555015d668-medalha-de-laurel-em-1-lugar.png',
         description: 'Conquista de primeira trilha concluída.',
       },
       {
@@ -29,8 +29,7 @@ export default class AchivementSeeder extends BaseSeeder {
       },
       {
         title: 'Top 1',
-        photoUrl:
-          'https://www.clipartmax.com/png/middle/91-912845_trophy-stock-photography-award-clip-art-trophies-cup-clip-art.png',
+        photoUrl: 'https://www.paginamagica.com.br/_theme/imagens/top1.png',
         description: 'Conquista por ter chegado no top 1 do ranking',
       },
     ])
