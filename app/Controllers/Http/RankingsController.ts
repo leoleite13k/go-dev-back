@@ -11,8 +11,9 @@ export default class RankingsController {
 
       return {
         ...ranking.serialize(),
-        data: ranking.serialize().data.map((profile) => ({
+        data: ranking.serialize().data.map((profile, index) => ({
           ...profile,
+          position: index + 1 + (page > 1 ? limit * (page - 1) : 0),
           avatarOptions: JSON.parse(profile?.avatarOptions || ''),
         })),
       }
