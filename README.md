@@ -155,6 +155,9 @@ Aplicação desenvolvida em NodeJS utilizando o framework AdonisJS.
   ````
 
   <br/>
+  6. Agora basta copiar e renomear o arquivo .env.example para .env e inserir as credenciais e urls
+
+  <br/>
 
   **Pronto! o projeto já está rodando ✨**
 
