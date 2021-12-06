@@ -106,7 +106,6 @@ Aplicação desenvolvida em NodeJS utilizando o framework AdonisJS.
 </details>
 
   <br/>
-  <br/>
 
   - Depois de configurar o SO...
 
