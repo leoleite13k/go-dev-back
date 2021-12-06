@@ -9,7 +9,6 @@ Aplicação desenvolvida em NodeJS utilizando o framework AdonisJS.
 - Banco relacional PostgreSQL ✅
 
 <br/>
-<br/>
 
 # Ambiente de desenvolvimento
 <details>
